@@ -16,7 +16,7 @@ namespace pryLautaroQuiligotti
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmFirma());
+            Application.Run(new frmJuego());
         }
     }
 }
