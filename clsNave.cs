@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Security.Permissions;
+using pryLautaroQuiligotti.Properties;
 
 namespace pryLautaroQuiligotti
 {
@@ -34,7 +35,8 @@ namespace pryLautaroQuiligotti
 
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgNave.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\imgNave.png");
+            imgNave.Image = Imagenes.imgNave;
+            //imgNave.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\imgNave.png");
         }
 
         public void CrearEnemigos(int cantidad)
@@ -50,13 +52,16 @@ namespace pryLautaroQuiligotti
                 switch (tipoEnemigo)
                 {
                     case 1:
-                        enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga1.jpg");
+                        enemigo.Image = Imagenes.enemigoGalaga1;
+                        //enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga1.jpg");
                         break;
                     case 2:
-                        enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga2.jpg");
+                        enemigo.Image = Imagenes.enemigoGalaga2;
+                        //enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga2.jpg");
                         break;
                     case 3:
-                        enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga3.jpg");
+                        enemigo.Image = Imagenes.enemigoGalaga3;
+                        //enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga3.jpg");
                         break;
                     default:
                         break;
