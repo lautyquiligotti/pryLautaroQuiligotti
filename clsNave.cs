@@ -53,15 +53,12 @@ namespace pryLautaroQuiligotti
                 {
                     case 1:
                         enemigo.Image = Imagenes.enemigoGalaga1;
-                        //enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga1.jpg");
                         break;
                     case 2:
-                        enemigo.Image = Imagenes.enemigoGalaga2;
-                        //enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga2.jpg");
+                        enemigo.Image = Imagenes.enemigoGalaga2;;
                         break;
                     case 3:
                         enemigo.Image = Imagenes.enemigoGalaga3;
-                        //enemigo.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\enemigoGalaga3.jpg");
                         break;
                     default:
                         break;
@@ -82,7 +79,8 @@ namespace pryLautaroQuiligotti
         {
             imgBala = new PictureBox();
             imgBala.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgBala.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\bala.jpg");
+            imgBala.Image = Imagenes.bala;
+            //imgBala.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\bala.jpg");
             imgBala.Size = new Size(30, 40);
             imgBala.Location = new Point(imgNave.Location.X + (imgNave.Width / 2) - (imgBala.Width / 2), imgNave.Location.Y);
 
