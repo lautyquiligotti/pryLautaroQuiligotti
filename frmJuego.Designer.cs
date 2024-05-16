@@ -32,6 +32,9 @@
             this.temporizadorEnemigo = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.temporizadorDisparo = new System.Windows.Forms.Timer(this.components);
+            this.timerEnemigosRestantes = new System.Windows.Forms.Timer(this.components);
+            this.lblScore = new System.Windows.Forms.Label();
+            this.timerBalasNave = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // temporizadorEnemigo
@@ -44,17 +47,39 @@
             this.temporizadorDisparo.Enabled = true;
             this.temporizadorDisparo.Tick += new System.EventHandler(this.temporizadorDisparo_Tick);
             // 
+            // timerEnemigosRestantes
+            // 
+            this.timerEnemigosRestantes.Enabled = true;
+            this.timerEnemigosRestantes.Tick += new System.EventHandler(this.timerEnemigosRestantes_Tick);
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.ForeColor = System.Drawing.Color.White;
+            this.lblScore.Location = new System.Drawing.Point(760, 9);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(35, 13);
+            this.lblScore.TabIndex = 0;
+            this.lblScore.Text = "Score";
+            // 
+            // timerBalasNave
+            // 
+            this.timerBalasNave.Tick += new System.EventHandler(this.timerBalasNave_Tick);
+            // 
             // frmJuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(884, 861);
+            this.Controls.Add(this.lblScore);
             this.Name = "frmJuego";
             this.Text = "GALAGA";
             this.Load += new System.EventHandler(this.frmJuego_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmJuego_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -63,5 +88,8 @@
         private System.Windows.Forms.Timer temporizadorEnemigo;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer temporizadorDisparo;
+        private System.Windows.Forms.Timer timerEnemigosRestantes;
+        private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.Timer timerBalasNave;
     }
 }

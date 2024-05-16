@@ -11,15 +11,10 @@ namespace pryLautaroQuiligotti
         public string nombre;
         int puntosdaño;
         public PictureBox imgNave;
-        //public PictureBox imgEnemigo1;
-        //public PictureBox imgEnemigo2;
-        //public PictureBox imgEnemigo3;
         public PictureBox imgBala;
-
+        public int score = 0;
         public List<PictureBox> enemigos = new List<PictureBox>();
         Random random = new Random();
-
-
 
         public void CrearJugador()
         {
@@ -30,7 +25,6 @@ namespace pryLautaroQuiligotti
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage;
             imgNave.Image = Imagenes.imgNave;
-            //imgNave.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\imgNave.png");
         }
 
         public void CrearEnemigos(int cantidad)
@@ -59,8 +53,8 @@ namespace pryLautaroQuiligotti
                 }
 
                 // Generar posiciones aleatorias
-                int posX = random.Next(0, 720); // 800 - 80 para evitar que los enemigos se salgan del formulario
-                int posY = random.Next(0, 520); // 600 - 80
+                int posX = random.Next(0, 720); 
+                int posY = random.Next(0, 520); 
 
                 enemigo.Location = new Point(posX, posY);
                 enemigo.Tag = "Enemigo";
@@ -99,6 +93,7 @@ namespace pryLautaroQuiligotti
                             Form.ActiveForm.Controls.Remove(enemigo);
                             imgBala.Dispose();
                             enemigo.Dispose();
+                            score++;
                             return;
                         }
                     }
@@ -112,6 +107,11 @@ namespace pryLautaroQuiligotti
                 }
             };
             timerBala.Start();
+        }
+
+        public int EnemigosEliminados()
+        {
+            return score;
         }
     }
 }

@@ -15,14 +15,12 @@ namespace pryLautaroQuiligotti
         public frmJuego()
         {
             InitializeComponent();
-
-            //temporizadorDisparo.Interval = 50; // Intervalo de tiempo en milisegundos
-            //temporizadorDisparo.Tick += temporizadorDisparo_Tick;
-            //temporizadorDisparo.Start();
         }
 
         clsNave objNave;
         List<PictureBox> balasEnemigas = new List<PictureBox>(); // Lista para las balas de los enemigos
+
+        int enemigosRestantes = 5; 
 
         private void frmJuego_Load(object sender, EventArgs e)
         {
@@ -34,6 +32,8 @@ namespace pryLautaroQuiligotti
             objNave.CrearJugador();
             objNave.imgNave.Location = new Point(350, 750);
             Controls.Add(objNave.imgNave);
+
+            temporizadorEnemigo.Enabled = true; //Nuevo
         }
 
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace pryLautaroQuiligotti
             foreach (PictureBox balaEnemiga in balasEnemigasCopia)
             {
                 // Mover la bala hacia abajo
-                balaEnemiga.Top += 10; //Velocidad de la bala
+                balaEnemiga.Top += 6; //Velocidad de la bala
 
                 // Verificar colisión con la nave
                 if (balaEnemiga.Bounds.IntersectsWith(objNave.imgNave.Bounds))
@@ -96,6 +96,7 @@ namespace pryLautaroQuiligotti
                     balaEnemiga.Dispose();
                 }
             }
+            Score();
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
@@ -114,6 +115,39 @@ namespace pryLautaroQuiligotti
             {
                 objNave.Disparo();
             }
+        }
+
+        private void timerEnemigosRestantes_Tick(object sender, EventArgs e)
+        {
+            bool quedanEnemigos = objNave.enemigos.Any(enemigo => enemigo.Visible);
+
+            if (!quedanEnemigos)
+            {
+                objNave.CrearEnemigos(5); // Crear 5 enemigos en cada tick del timer
+                foreach (PictureBox enemigo in objNave.enemigos)
+                {
+                    Controls.Add(enemigo);
+                    // Crear balas para cada enemigo
+                    PictureBox balaEnemiga = new PictureBox();
+                    balaEnemiga.BackColor = Color.Red;
+                    balaEnemiga.Size = new Size(5, 5);
+                    balaEnemiga.Location = new Point(enemigo.Location.X + enemigo.Width / 2, enemigo.Location.Y + enemigo.Height);
+                    Controls.Add(balaEnemiga);
+                    balasEnemigas.Add(balaEnemiga);
+                    temporizadorEnemigo.Enabled = false;
+                }
+            }
+        }
+
+        private void Score()
+        {
+            int enemigosEliminados = objNave.EnemigosEliminados();
+            lblScore.Text = "SCORE:" + enemigosEliminados.ToString();
+        }
+
+        private void timerBalasNave_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }
