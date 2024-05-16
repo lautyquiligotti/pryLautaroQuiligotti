@@ -65,7 +65,7 @@
             // 
             // timerBalasNave
             // 
-            this.timerBalasNave.Tick += new System.EventHandler(this.timerBalasNave_Tick);
+            //this.timerBalasNave.Tick += new System.EventHandler(this.timerBalasNave_Tick);
             // 
             // frmJuego
             // 

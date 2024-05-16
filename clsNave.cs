@@ -52,8 +52,7 @@ namespace pryLautaroQuiligotti
                         break;
                 }
 
-                // Generar posiciones aleatorias
-                int posX = random.Next(0, 720); 
+                int posX = random.Next(0, 720); // Generar posiciones aleatorias
                 int posY = random.Next(0, 520); 
 
                 enemigo.Location = new Point(posX, posY);
@@ -63,16 +62,8 @@ namespace pryLautaroQuiligotti
             }
         }
 
-        public void Disparo()
+        public void Disparo(PictureBox imgBala)
         {
-            imgBala = new PictureBox();
-            imgBala.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgBala.Image = Imagenes.bala;
-            imgBala.Size = new Size(30, 40);
-            imgBala.Location = new Point(imgNave.Location.X + (imgNave.Width / 2) - (imgBala.Width / 2), imgNave.Location.Y);
-
-            Form.ActiveForm.Controls.Add(imgBala);
-
             Timer timerBala = new Timer();
             timerBala.Interval = 20;
 
@@ -97,7 +88,7 @@ namespace pryLautaroQuiligotti
                             return;
                         }
                     }
-                };
+                }
 
                 if (imgBala.Top + imgBala.Height < 0)
                 {
@@ -106,6 +97,7 @@ namespace pryLautaroQuiligotti
                     imgBala.Dispose();
                 }
             };
+
             timerBala.Start();
         }
 

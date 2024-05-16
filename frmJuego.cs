@@ -19,6 +19,7 @@ namespace pryLautaroQuiligotti
 
         clsNave objNave;
         List<PictureBox> balasEnemigas = new List<PictureBox>(); // Lista para las balas de los enemigos
+        List<PictureBox> balasNave = new List<PictureBox>();
 
         int enemigosRestantes = 5; 
 
@@ -56,29 +57,23 @@ namespace pryLautaroQuiligotti
         bool naveDestruida = false;
         private void temporizadorDisparo_Tick(object sender, EventArgs e)
         {
-            // Verificar si la nave ya fue destruida para evitar múltiples mensajes
-            if (naveDestruida)
+            if (naveDestruida) // Verificar si la nave ya fue destruida para evitar múltiples mensajes
                 return;
 
-            // Copia de la lista de balas de enemigos
-            var balasEnemigasCopia = new List<PictureBox>(balasEnemigas);
+            var balasEnemigasCopia = new List<PictureBox>(balasEnemigas); // Copia de la lista de balas de enemigos
 
             foreach (PictureBox balaEnemiga in balasEnemigasCopia)
             {
                 // Mover la bala hacia abajo
                 balaEnemiga.Top += 6; //Velocidad de la bala
 
-                // Verificar colisión con la nave
-                if (balaEnemiga.Bounds.IntersectsWith(objNave.imgNave.Bounds))
+                if (balaEnemiga.Bounds.IntersectsWith(objNave.imgNave.Bounds)) // Verificar colisión con la nave
                 {
                     naveDestruida = true;
-
-                    // Mostrar el mensaje de que la nave ha sido destruida
                     objNave.imgNave.Dispose();
                     MessageBox.Show("¡La nave ha sido destruida!");
 
-                    // Eliminar todas las balas y detener el temporizador
-                    foreach (var bala in balasEnemigas)
+                    foreach (var bala in balasEnemigas) // Eliminar todas las balas y detener el temporizador
                     {
                         Controls.Remove(bala);
                         bala.Dispose();
@@ -88,8 +83,7 @@ namespace pryLautaroQuiligotti
                     break; 
                 }
 
-                // Eliminar la bala si sale de la pantalla
-                if (balaEnemiga.Top >= this.ClientSize.Height)
+                if (balaEnemiga.Top >= this.ClientSize.Height) // Eliminar la bala si sale de la pantalla
                 {
                     balasEnemigas.Remove(balaEnemiga);
                     Controls.Remove(balaEnemiga);
@@ -113,7 +107,15 @@ namespace pryLautaroQuiligotti
             }
             if (e.KeyCode == Keys.Space) 
             {
-                objNave.Disparo();
+                //objNave.Disparo();
+                PictureBox balaNave = new PictureBox();
+                balaNave.SizeMode = PictureBoxSizeMode.StretchImage;
+                balaNave.Image = Imagenes.bala;
+                balaNave.Size = new Size(30, 40);
+                balaNave.Location = new Point(objNave.imgNave.Location.X + (objNave.imgNave.Width / 2) - (balaNave.Width / 2), objNave.imgNave.Location.Y);
+                Controls.Add(balaNave);
+                balasNave.Add(balaNave);
+                objNave.Disparo(balaNave);
             }
         }
 
@@ -138,16 +140,10 @@ namespace pryLautaroQuiligotti
                 }
             }
         }
-
         private void Score()
         {
             int enemigosEliminados = objNave.EnemigosEliminados();
             lblScore.Text = "SCORE:" + enemigosEliminados.ToString();
-        }
-
-        private void timerBalasNave_Tick(object sender, EventArgs e)
-        {
-
         }
     }
 }
