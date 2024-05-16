@@ -16,14 +16,12 @@ namespace pryLautaroQuiligotti
         {
             InitializeComponent();
 
-            temporizadorDisparo.Interval = 50; // Intervalo de tiempo en milisegundos
-            temporizadorDisparo.Tick += temporizadorDisparo_Tick;
-            temporizadorDisparo.Start();
+            //temporizadorDisparo.Interval = 50; // Intervalo de tiempo en milisegundos
+            //temporizadorDisparo.Tick += temporizadorDisparo_Tick;
+            //temporizadorDisparo.Start();
         }
 
         clsNave objNave;
-        Random random = new Random();
-        Timer timerEnemigos = new Timer(); // Timer para el movimiento y disparo de los enemigos
         List<PictureBox> balasEnemigas = new List<PictureBox>(); // Lista para las balas de los enemigos
 
         private void frmJuego_Load(object sender, EventArgs e)
@@ -47,7 +45,7 @@ namespace pryLautaroQuiligotti
                 // Crear balas para cada enemigo
                 PictureBox balaEnemiga = new PictureBox();
                 balaEnemiga.BackColor = Color.Red;
-                balaEnemiga.Size = new Size(5, 5); // Tamaño de la bala
+                balaEnemiga.Size = new Size(5, 5); 
                 balaEnemiga.Location = new Point(enemigo.Location.X + enemigo.Width / 2, enemigo.Location.Y + enemigo.Height);
                 Controls.Add(balaEnemiga);
                 balasEnemigas.Add(balaEnemiga);
@@ -68,12 +66,11 @@ namespace pryLautaroQuiligotti
             foreach (PictureBox balaEnemiga in balasEnemigasCopia)
             {
                 // Mover la bala hacia abajo
-                balaEnemiga.Top += 3; //Velocidad de la bala
+                balaEnemiga.Top += 10; //Velocidad de la bala
 
                 // Verificar colisión con la nave
                 if (balaEnemiga.Bounds.IntersectsWith(objNave.imgNave.Bounds))
                 {
-                    // Marcar que la nave ha sido destruida
                     naveDestruida = true;
 
                     // Mostrar el mensaje de que la nave ha sido destruida
@@ -88,7 +85,7 @@ namespace pryLautaroQuiligotti
                     }
                     balasEnemigas.Clear();
                     temporizadorDisparo.Stop();
-                    break; // Salir del bucle una vez que se detecta la colisión
+                    break; 
                 }
 
                 // Eliminar la bala si sale de la pantalla
@@ -103,75 +100,20 @@ namespace pryLautaroQuiligotti
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right) //Mover hacia la derecha
+            if (e.KeyCode == Keys.Right) 
             {
                 objNave.imgNave.Location = new Point(
                     objNave.imgNave.Location.X + 5, objNave.imgNave.Location.Y);
             }
-            if (e.KeyCode == Keys.Left) //Mover hacia la izquierda
+            if (e.KeyCode == Keys.Left) 
             {
                 objNave.imgNave.Location = new Point(
                     objNave.imgNave.Location.X - 5, objNave.imgNave.Location.Y);
             }
-
-            if (e.KeyCode == Keys.Space) //Si presiona el espacio
+            if (e.KeyCode == Keys.Space) 
             {
-                //Que dispare bala
                 objNave.Disparo();
             }
         }
-
-        //private void CrearBalasEnemigos()
-        //{
-        //    foreach (PictureBox enemigo in objNave.enemigos)
-        //    {
-        //        // Crear una nueva bala para cada enemigo y moverla hacia abajo
-        //        PictureBox balaEnemiga = new PictureBox();
-        //        balaEnemiga.BackColor = Color.Red;
-        //        balaEnemiga.Size = new Size(5, 5); // Tamaño de la bala
-        //        balaEnemiga.Location = new Point(enemigo.Location.X + enemigo.Width / 2, enemigo.Location.Y + enemigo.Height);
-        //        Controls.Add(balaEnemiga);
-        //        balasEnemigas.Add(balaEnemiga);
-        //    }
-        //}
-
-        //private void VerificarColisiones()
-        //{
-        //    foreach (PictureBox balaEnemiga in balasEnemigas.ToList()) // Usar ToList para evitar excepción al modificar la lista
-        //    {
-        //        // Mover la bala hacia abajo
-        //        balaEnemiga.Top += 1;
-
-        //        // Verificar colisión con la nave
-        //        if (balaEnemiga.Bounds.IntersectsWith(objNave.imgNave.Bounds))
-        //        {
-        //            // Marcar que la nave ha sido destruida
-        //            naveDestruida = true;
-
-        //            // Mostrar el mensaje de que la nave ha sido destruida
-        //            objNave.imgNave.Dispose();
-        //            MessageBox.Show("¡La nave ha sido destruida!");
-
-        //            // Eliminar todas las balas y detener el temporizador
-        //            foreach (var bala in balasEnemigas)
-        //            {
-        //                Controls.Remove(bala);
-        //                bala.Dispose();
-        //            }
-        //            balasEnemigas.Clear();
-        //            temporizadorDisparo.Stop();
-        //            break; // Salir del bucle una vez que se detecta la colisión
-        //        }
-
-        //        // Eliminar la bala si sale de la pantalla
-        //        if (balaEnemiga.Top >= this.ClientSize.Height)
-        //        {
-        //            balasEnemigas.Remove(balaEnemiga);
-        //            Controls.Remove(balaEnemiga);
-        //            balaEnemiga.Dispose();
-        //        }
-        //    }
-
-        //}
     }
 }

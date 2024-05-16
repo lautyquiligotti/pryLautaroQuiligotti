@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Security.Permissions;
-using pryLautaroQuiligotti.Properties;
 
 namespace pryLautaroQuiligotti
 {
@@ -16,15 +11,14 @@ namespace pryLautaroQuiligotti
         public string nombre;
         int puntosdaño;
         public PictureBox imgNave;
-        public PictureBox imgEnemigo1;
-        public PictureBox imgEnemigo2;
-        public PictureBox imgEnemigo3;
+        //public PictureBox imgEnemigo1;
+        //public PictureBox imgEnemigo2;
+        //public PictureBox imgEnemigo3;
         public PictureBox imgBala;
 
-        //Nuevo
-        public List<PictureBox> enemigos = new List<PictureBox>(); 
+        public List<PictureBox> enemigos = new List<PictureBox>();
         Random random = new Random();
-        //Nuevo
+
 
 
         public void CrearJugador()
@@ -55,7 +49,7 @@ namespace pryLautaroQuiligotti
                         enemigo.Image = Imagenes.enemigoGalaga1;
                         break;
                     case 2:
-                        enemigo.Image = Imagenes.enemigoGalaga2;;
+                        enemigo.Image = Imagenes.enemigoGalaga2; ;
                         break;
                     case 3:
                         enemigo.Image = Imagenes.enemigoGalaga3;
@@ -80,7 +74,6 @@ namespace pryLautaroQuiligotti
             imgBala = new PictureBox();
             imgBala.SizeMode = PictureBoxSizeMode.StretchImage;
             imgBala.Image = Imagenes.bala;
-            //imgBala.Image = Image.FromFile(@"C:\Users\lautaroquiligotti\source\repos\pryLautaroQuiligotti\bin\Debug\bala.jpg");
             imgBala.Size = new Size(30, 40);
             imgBala.Location = new Point(imgNave.Location.X + (imgNave.Width / 2) - (imgBala.Width / 2), imgNave.Location.Y);
 
