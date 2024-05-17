@@ -7,9 +7,7 @@ namespace pryLautaroQuiligotti
 {
     internal class clsNave
     {
-        public int vida;
         public string nombre;
-        int puntosdaño;
         public PictureBox imgNave;
         public PictureBox imgBala;
         public int score = 0;
@@ -18,9 +16,7 @@ namespace pryLautaroQuiligotti
 
         public void CrearJugador()
         {
-            vida = 100;
             nombre = "Jugador1";
-            puntosdaño = 1;
 
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -35,8 +31,7 @@ namespace pryLautaroQuiligotti
                 enemigo.SizeMode = PictureBoxSizeMode.StretchImage;
                 enemigo.Size = new Size(80, 80);
 
-                // Selección aleatoria de la imagen del enemigo
-                int tipoEnemigo = random.Next(1, 4);
+                int tipoEnemigo = random.Next(1, 4); //Selección aleatoria de la imagen del enemigo
                 switch (tipoEnemigo)
                 {
                     case 1:
@@ -97,7 +92,6 @@ namespace pryLautaroQuiligotti
                     imgBala.Dispose();
                 }
             };
-
             timerBala.Start();
         }
 

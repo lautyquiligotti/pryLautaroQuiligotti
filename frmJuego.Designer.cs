@@ -56,16 +56,12 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.BackColor = System.Drawing.Color.Transparent;
-            this.lblScore.ForeColor = System.Drawing.Color.White;
-            this.lblScore.Location = new System.Drawing.Point(760, 9);
+            this.lblScore.ForeColor = System.Drawing.Color.Lime;
+            this.lblScore.Location = new System.Drawing.Point(754, 19);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(35, 13);
             this.lblScore.TabIndex = 0;
             this.lblScore.Text = "Score";
-            // 
-            // timerBalasNave
-            // 
-            //this.timerBalasNave.Tick += new System.EventHandler(this.timerBalasNave_Tick);
             // 
             // frmJuego
             // 

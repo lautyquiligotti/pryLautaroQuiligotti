@@ -21,8 +21,6 @@ namespace pryLautaroQuiligotti
         List<PictureBox> balasEnemigas = new List<PictureBox>(); // Lista para las balas de los enemigos
         List<PictureBox> balasNave = new List<PictureBox>();
 
-        int enemigosRestantes = 5; 
-
         private void frmJuego_Load(object sender, EventArgs e)
         {
             //Tamaño del frm
@@ -107,7 +105,6 @@ namespace pryLautaroQuiligotti
             }
             if (e.KeyCode == Keys.Space) 
             {
-                //objNave.Disparo();
                 PictureBox balaNave = new PictureBox();
                 balaNave.SizeMode = PictureBoxSizeMode.StretchImage;
                 balaNave.Image = Imagenes.bala;
